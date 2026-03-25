@@ -77,7 +77,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📬 Contact
 
-- **Name**: Victor Mwadzombo
+- **Name**: Victor  Mwadzombo
 - **Email**: [myportfolio332@gmail.com](mailto:myportfolio332@gmail.com)
 - **Live Site**: [yourusername.pythonanywhere.com](https://yourusername.pythonanywhere.com)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/victor-mwadzombo-95a026291/)
+- **LinkedIn**: [LinkedIn Profile](https://www.linkedin.com/in/victor-mwadzombo-95a026291/)
