@@ -1,0 +1,122 @@
+.hero-side {
+    display: flex;
+    align-self: stretch;
+    min-height: 0;
+}
+
+.profile-carousel {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin-left: auto;
+    padding: 0;
+    overflow: hidden;
+    min-height: 0;
+    height: var(--hero-copy-height, auto);
+}
+
+.profile-carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: inherit;
+    background: var(--surface-soft);
+    transform: translateX(0);
+    transition: transform 0.45s ease;
+}
+
+.profile-slide {
+    min-width: 100%;
+    margin: 0;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.profile-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+}
+
+.profile-slide figcaption {
+    padding: 0.65rem 0.8rem;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    border-top: 1px solid var(--border);
+}
+
+.profile-carousel-controls {
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.profile-carousel:hover .profile-carousel-controls,
+.profile-carousel:focus-within .profile-carousel-controls {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.profile-carousel-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.profile-carousel-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.profile-carousel-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    background: color-mix(in srgb, var(--border) 85%, transparent);
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.profile-carousel-dot:hover {
+    transform: scale(1.1);
+}
+
+.profile-carousel-dot.is-active {
+    background: var(--accent);
+}
+
+@media (max-width: 1080px) {
+    .hero-side {
+        display: block;
+    }
+
+    .profile-carousel {
+        max-width: 420px;
+        margin-left: 0;
+        height: min(68svh, 540px);
+    }
+
+    .profile-slide img {
+        aspect-ratio: auto;
+    }
+}

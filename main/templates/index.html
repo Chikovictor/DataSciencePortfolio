@@ -1,0 +1,546 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang=runserver"en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victor Mwadzombo's Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Victor Chiko Mwadzombo, an African Data Scientist building data-backed products and backend systems for real-world impact.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260302-casefix1">
+    <link rel="stylesheet" href="{% static 'css/carousel.css' %}?v=20260228-hero1">
+</head>
+
+<body data-theme="dark">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Main navigation">
+            <a class="brand" href="#home">
+                <span class="brand-logo-slot" aria-hidden="true">VM</span>
+                <span class="brand-copy">
+                    <strong>Victor Mwadzombo</strong>
+                    <small>Code + Data for Real-World Problem's Solutions</small>
+                </span>
+            </a>
+
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Toggle navigation menu"
+                aria-controls="nav-panel" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-panel" id="nav-panel">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Case Studies</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#events">Events</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+                        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 4V2m0 20v-2m8-8h2M2 12h2m12.95 4.95l1.41 1.41M3.64 3.64l1.41 1.41m0 13.9l-1.41 1.41m13.9-13.9l1.41-1.41M12 7a5 5 0 1 0 0 10a5 5 0 0 0 0-10Z">
+                            </path>
+                        </svg>
+                        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 14.13A8.99 8.99 0 0 1 9.87 3A9 9 0 1 0 21 14.13Z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section id="home" class="section hero">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <p class="eyebrow">Data Scientist - Kenya, Africa</p>
+                    <h1>I design data products that improve decisions, operations, and growth.</h1>
+                    <p class="lead">
+                        I build analytics pipelines, machine learning systems, and production-grade Django backends that
+                        help organizations solve practical African market challenges with data.
+                    </p>
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="#projects">View Case Studies</a>
+                        <a class="btn btn-secondary" href="{{ resume_url }}" target="_blank"
+                            rel="noopener noreferrer">Download Resume</a>
+                        <a class="btn btn-secondary" href="#contact">Discuss a Project</a>
+                    </div>
+                    <ul class="quick-facts">
+                        <li><span>Business Analytics</span>KPIs, dashboards, and actionable reporting for teams.</li>
+                        <li><span>Machine Learning</span>Forecasting and classification for better planning.</li>
+                        <li><span>Backend Engineering</span>Django APIs that stay reliable in production.</li>
+                    </ul>
+                </div>
+
+                <div class="hero-side reveal">
+                    <section class="panel profile-carousel" data-profile-carousel data-profile-interval="4500"
+                        aria-label="Profile image carousel">
+                        <div class="profile-carousel-track" data-profile-track>
+                            {% if profile_images %}
+                            {% for profile_image in profile_images %}
+                            <figure class="profile-slide{% if forloop.first %} is-active{% endif %}" data-profile-slide>
+                                <img src="{{ profile_image.image.url }}"
+                                    alt="{{ profile_image.caption|default:'Victor Mwadzombo profile image' }}">
+                                {% if profile_image.caption %}
+                                <figcaption>{{ profile_image.caption }}</figcaption>
+                                {% endif %}
+                            </figure>
+                            {% endfor %}
+                            {% else %}
+                            <figure class="profile-slide is-active" data-profile-slide>
+                                <img src="{% static 'images/profile.jpg' %}" alt="Victor Mwadzombo profile image">
+                                {% comment %} <figcaption>Upload additional profile photos from admin to power this
+                                    carousel.</figcaption> {% endcomment %}
+                            </figure>
+                            {% endif %}
+                        </div>
+                        <div class="profile-carousel-controls" data-profile-controls>
+                            <button type="button" class="profile-carousel-arrow" data-profile-prev
+                                aria-label="Previous profile image">&larr;</button>
+                            <div class="profile-carousel-dots" aria-label="Profile slide navigation">
+                                {% if profile_images %}
+                                {% for profile_image in profile_images %}
+                                <button type="button"
+                                    class="profile-carousel-dot{% if forloop.first %} is-active{% endif %}"
+                                    data-profile-dot="{{ forloop.counter0 }}"
+                                    aria-label="Go to profile slide {{ forloop.counter }}"></button>
+                                {% endfor %}
+                                {% else %}
+                                <button type="button" class="profile-carousel-dot is-active" data-profile-dot="0"
+                                    aria-label="Go to profile slide 1"></button>
+                                {% endif %}
+                            </div>
+                            <button type="button" class="profile-carousel-arrow" data-profile-next
+                                aria-label="Next profile image">&rarr;</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container narrow reveal">
+                <p class="eyebrow">About</p>
+                <h2>Professional Profile</h2>
+                <p>
+                    I am a Data Scientist and Backend Engineer based in Kenya. My work sits where data rigor, clear
+                    communication,
+                    and dependable software systems intersect.
+                </p>
+                <p>
+                    I help teams move from disconnected data to confident decisions through analytics, machine learning,
+                    and practical backend architecture.
+                </p>
+                <div class="inline-actions">
+                    <a class="btn btn-secondary" href="{{ resume_url }}" target="_blank"
+                        rel="noopener noreferrer">Download Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <p class="eyebrow reveal">Expertise</p>
+                <h2 class="reveal">Core Competencies</h2>
+                <p class="section-intro reveal">
+                    Focused capabilities for end-to-end delivery from data ingestion and model development to production
+                    APIs and reporting.
+                </p>
+                <div class="skills-grid">
+                    <article class="panel skill-card reveal">
+                        <h3>Data Analytics</h3>
+                        <ul>
+                            <li>Python, Pandas, NumPy</li>
+                            <li>SQL and exploratory analysis</li>
+                            <li>Power BI dashboards and KPI design</li>
+                            <li>Decision-ready data storytelling</li>
+                        </ul>
+                    </article>
+                    <article class="panel skill-card reveal">
+                        <h3>Machine Learning</h3>
+                        <ul>
+                            <li>Scikit-learn model pipelines</li>
+                            <li>Feature engineering workflows</li>
+                            <li>Validation, tuning, and monitoring</li>
+                            <li>Forecasting and classification tasks</li>
+                        </ul>
+                    </article>
+                    <article class="panel skill-card reveal">
+                        <h3>Backend APIs</h3>
+                        <ul>
+                            <li>Django and Django REST Framework</li>
+                            <li>Permission-safe API architecture</li>
+                            <li>Authentication and security controls</li>
+                            <li>PostgreSQL and MySQL integration</li>
+                        </ul>
+                    </article>
+                    <article class="panel skill-card reveal">
+                        <h3>Delivery Workflow</h3>
+                        <ul>
+                            <li>Git and release management</li>
+                            <li>Testing and quality checks</li>
+                            <li>Container-ready project structure</li>
+                            <li>Handover-ready documentation</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <p class="eyebrow reveal">Work Samples</p>
+                <h2 class="reveal">Case Studies</h2>
+                <p class="section-intro reveal">
+                    Each project card summarizes business context, technical implementation, and outcomes.
+                </p>
+                <div class="case-study-grid">
+                    {% for case in case_studies %}
+                    <article
+                        class="case-card reveal{% if case.repository_url or case.github_url %} case-card-clickable{% endif %}"
+                        {% if case.repository_url %} data-case-link="{{ case.repository_url }}" {% elif case.github_url
+                        %} data-case-link="{{ case.github_url }}" {% endif %}>
+                        <div class="case-media">
+                            {% if case.preview_image %}
+                            <img src="{{ case.preview_image.url }}" alt="{{ case.title }}">
+                            {% else %}
+                            <img src="{{ case.preview_image_url }}" alt="{{ case.title }}">
+                            {% endif %}
+                            <div class="case-overlay">
+                                <dl class="case-meta">
+                                    <div>
+                                        <dt>Problem</dt>
+                                        <dd>{{ case.problem }}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Data</dt>
+                                        <dd>{{ case.data }}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Approach</dt>
+                                        <dd>{{ case.approach }}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>Results</dt>
+                                        <dd>{{ case.results }}</dd>
+                                    </div>
+                                </dl>
+                                {% if case.repository_url %}
+                                <a class="btn btn-primary btn-sm" href="{{ case.repository_url }}" target="_blank"
+                                    rel="noopener noreferrer">View Repository</a>
+                                {% elif case.github_url %}
+                                <a class="btn btn-primary btn-sm" href="{{ case.github_url }}" target="_blank"
+                                    rel="noopener noreferrer">View Repository</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="case-body">
+                            <h3>{{ case.title }}</h3>
+                            <p>{{ case.summary }}</p>
+                            <div class="stack-tags">
+                                {% for tag in case.tech_stack_list %}
+                                <span>{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container split-grid">
+                <article class="panel reveal">
+                    <p class="eyebrow">Foundation</p>
+                    <h2>Education</h2>
+                    <ul class="list-clean">
+                        <li><strong>BSc Computer Science</strong> - Kisii University, Kenya (2023 - Present)</li>
+                        <li><strong>High School</strong> - Friends School Kamusinga, Kenya (2019 - 2022)</li>
+                        <li><strong>Primary School</strong> - Mkwakwani Primary School, Kenya (2011 - 2018)</li>
+                    </ul>
+                </article>
+
+                <article id="certifications" class="panel reveal">
+                    <p class="eyebrow">Growth</p>
+                    <h2>Certifications</h2>
+                    {% if certifications %}
+                    <div class="cert-list">
+                        {% for cert in certifications %}
+                        <a class="cert-item" href="{{ cert.verification_link }}" target="_blank"
+                            rel="noopener noreferrer">
+                            <span class="cert-main">
+                                <strong>{{ cert.title }}</strong>
+                                <small>{{ cert.issuing_organization }} | {{ cert.issue_date|date:"M Y" }}</small>
+                            </span>
+                            <span class="cert-link-icon" aria-hidden="true">&#8599;</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <ul class="list-clean">
+                        <li>Certifications will appear here once added by Chiko.</li>
+                    </ul>
+                    {% endif %}
+                </article>
+            </div>
+        </section>
+
+        <section id="testimonials" class="section">
+            <div class="container">
+                <div class="testimonial-head">
+                    <div>
+                        <p class="eyebrow reveal">Social Proof</p>
+                        <h2 class="reveal">Testimonials</h2>
+                    </div>
+                    <div class="carousel-controls">
+                        <button type="button" class="carousel-btn" data-carousel-prev
+                            aria-label="Previous testimonial">&larr;</button>
+                        <button type="button" class="carousel-btn" data-carousel-next
+                            aria-label="Next testimonial">&rarr;</button>
+                    </div>
+                </div>
+                <div class="testimonial-carousel" data-review-carousel>
+                    {% if approved_reviews %}
+                    {% for review in approved_reviews %}
+                    <article class="panel testimonial-card reveal">
+                        {% if review.image %}
+                        <img class="testimonial-avatar" src="{{ review.image.url }}" alt="{{ review.name }}">
+                        {% else %}
+                        <img class="testimonial-avatar" src="{% static 'images/default-avatar.svg' %}"
+                            alt="{{ review.name }}">
+                        {% endif %}
+                        <p class="testimonial-text">"{{ review.review_text }}"</p>
+                        <h3>{{ review.name }}</h3>
+                        <span>{{ review.title }}</span>
+                    </article>
+                    {% endfor %}
+                    {% else %}
+                    <article class="panel testimonial-card reveal">
+                        <img class="testimonial-avatar" src="{% static 'images/default-avatar.svg' %}"
+                            alt="Default avatar">
+                        <p class="testimonial-text">Published testimonials will appear here after approval.</p>
+                    </article>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        <section id="submit-review" class="section">
+            <div class="container narrow reveal">
+                <p class="eyebrow">Feedback</p>
+                <h2>Share Your Experience</h2>
+                <form id="review-form" class="panel review-form" method="POST" enctype="multipart/form-data"
+                    action="{% url 'index' %}">
+                    {% csrf_token %}
+                    {{ review_form.honeypot }}
+                    {{ review_form.rendered_at }}
+
+                    <div class="field" data-field="name">
+                        <label for="{{ review_form.name.id_for_label }}">Name</label>
+                        {{ review_form.name }}
+                        {% if review_form.name.errors %}<small class="field-error">{{ review_form.name.errors|striptags
+                            }}</small>{% endif %}
+                    </div>
+                    <div class="field" data-field="title">
+                        <label for="{{ review_form.title.id_for_label }}">Role / Company</label>
+                        {{ review_form.title }}
+                        {% if review_form.title.errors %}<small class="field-error">{{
+                            review_form.title.errors|striptags }}</small>{% endif %}
+                    </div>
+                    <div class="field" data-field="review_text">
+                        <label for="{{ review_form.review_text.id_for_label }}">Review</label>
+                        {{ review_form.review_text }}
+                        {% if review_form.review_text.errors %}<small class="field-error">{{
+                            review_form.review_text.errors|striptags }}</small>{% endif %}
+                    </div>
+                    <div class="field" data-field="image">
+                        <label for="{{ review_form.image.id_for_label }}">Profile Image (optional)</label>
+                        {{ review_form.image }}
+                        <small class="field-help">If no image is uploaded, a default avatar will be used.</small>
+                        {% if review_form.image.errors %}<small class="field-error">{{
+                            review_form.image.errors|striptags }}</small>{% endif %}
+                    </div>
+                    <button type="submit" name="review_submit" class="btn btn-primary" data-loading-label="Submitting">
+                        <span class="btn-label">Submit Testimonial</span>
+                    </button>
+                    <div id="review-form-status" class="form-status" hidden aria-live="polite"></div>
+                    {% for message in review_messages %}
+                    <div class="form-status {% if 'success' in message.tags %}success{% else %}error{% endif %}"
+                        data-auto-dismiss="5000">{{ message }}</div>
+                    {% endfor %}
+                    {% if review_form.non_field_errors %}
+                    <div class="form-status error" data-auto-dismiss="5000">{{ review_form.non_field_errors|striptags }}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </section>
+
+        <section id="events" class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div>
+                        <p class="eyebrow">Gallery</p>
+                        <h2>Events & Meetups</h2>
+                    </div>
+                </div>
+                {% if events_gallery %}
+                <div class="event-grid">
+                    {% for event in events_gallery %}
+                    <article class="panel event-card reveal">
+                        <div class="event-media">
+                            <img src="{{ event.image.url }}" alt="{{ event.title }}" class="lightbox-trigger"
+                                data-lightbox-src="{{ event.image.url }}" data-lightbox-caption="{{ event.title }}">
+                        </div>
+                        <div class="event-body">
+                            {% if event.date %}<span class="event-date">{{ event.date|date:"F Y" }}</span>{% endif %}
+                            <h3>{{ event.title }}</h3>
+                            <p>{{ event.description }}</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <article class="panel reveal">
+                    <p class="testimonial-text">Event photos will appear here once added.</p>
+                </article>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+            <div class="lightbox-overlay" data-lightbox-close></div>
+            <div class="lightbox-content">
+                <button type="button" class="lightbox-close" data-lightbox-close
+                    aria-label="Close image">&times;</button>
+                <img id="lightbox-image" src="" alt="Expanded event image">
+                <p id="lightbox-caption" class="lightbox-caption"></p>
+            </div>
+        </div>
+
+        <section id="contact" class="section">
+            <div class="container split-grid">
+                <article class="panel reveal">
+                    <p class="eyebrow">Contact</p>
+                    <h2>Let's Build With Data</h2>
+                    <p>
+                        I collaborate with teams that need analytics, ML systems, and secure backend products to solve
+                        real business problems.
+                    </p>
+                    <ul class="contact-points">
+                        <li><strong>Location:</strong> Kenya, Africa</li>
+                        <li><strong>Email:</strong> Available via the secure form</li>
+                        <li><strong>Focus:</strong> Analytics, ML, Backend APIs</li>
+                    </ul>
+                    <div class="social-row" aria-label="Social profiles">
+                        <a href="https://github.com/Chikovictor" target="_blank" rel="noopener noreferrer"
+                            aria-label="GitHub profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.4.8-4.1-1.4-4.1-1.4-.6-1.3-1.3-1.7-1.3-1.7-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.6-1.4-5.6-6.1 0-1.4.5-2.5 1.2-3.4-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.4 1.2a11.4 11.4 0 0 1 6.2 0c2.4-1.6 3.4-1.2 3.4-1.2.7 1.6.3 2.9.1 3.2.8.9 1.2 2 1.2 3.4 0 4.8-2.9 5.8-5.6 6.1.4.4.9 1.1.9 2.2v3.2c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/victor-mwadzombo-95a026291/" target="_blank"
+                            rel="noopener noreferrer" aria-label="LinkedIn profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M4.98 3.5C4.98 4.9 3.87 6 2.5 6S0 4.9 0 3.5 1.11 1 2.5 1s2.48 1.1 2.48 2.5ZM0 8h5v15H0V8Zm7.5 0H12v2.1h.1c.6-1.2 2.1-2.5 4.4-2.5 4.7 0 5.5 3.1 5.5 7.1V23h-5v-7c0-1.7 0-3.8-2.3-3.8S12 14 12 15.8V23H7.5V8Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@victor.chiko" target="_blank" rel="noopener noreferrer"
+                            aria-label="TikTok profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M14.2 3.4c.7 1.5 1.8 2.5 3.2 3.1.9.4 1.8.6 2.7.6V10a9 9 0 0 1-3.6-.8v5.6c0 3.4-2.7 6.2-6.2 6.2S4.2 18.2 4.2 14.8s2.8-6.2 6.2-6.2c.3 0 .6 0 .9.1V12a3 3 0 0 0-.9-.1c-1.6 0-2.9 1.3-2.9 2.9s1.3 2.9 2.9 2.9 2.9-1.2 2.9-2.9V2.9h2.9Z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61550934057261" target="_blank"
+                            rel="noopener noreferrer" aria-label="Facebook profile">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M13.5 8.5V6.8c0-.8.5-1.3 1.2-1.3H16V2.4c-.2 0-.9-.1-1.8-.1-2.6 0-4.2 1.6-4.2 4.6v1.6H7.5v3.5H10V21h3.5v-9h2.6l.4-3.5h-3Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="panel reveal">
+                    <h2>Send a Message</h2>
+                    <form id="contact-form" class="contact-form" method="POST" action="{% url 'index' %}">
+                        {% csrf_token %}
+                        {{ contact_form.honeypot }}
+                        {{ contact_form.rendered_at }}
+
+                        <div class="field" data-field="name">
+                            <label for="{{ contact_form.name.id_for_label }}">Name</label>
+                            {{ contact_form.name }}
+                            {% if contact_form.name.errors %}<small class="field-error">{{
+                                contact_form.name.errors|striptags }}</small>{% endif %}
+                        </div>
+
+                        <div class="field" data-field="email">
+                            <label for="{{ contact_form.email.id_for_label }}">Email</label>
+                            {{ contact_form.email }}
+                            {% if contact_form.email.errors %}<small class="field-error">{{
+                                contact_form.email.errors|striptags }}</small>{% endif %}
+                        </div>
+
+                        <div class="field" data-field="message">
+                            <label for="{{ contact_form.message.id_for_label }}">Message</label>
+                            {{ contact_form.message }}
+                            {% if contact_form.message.errors %}<small class="field-error">{{
+                                contact_form.message.errors|striptags }}</small>{% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" name="contact_submit" value="1"
+                            data-loading-label="Sending">
+                            <span class="btn-label">Send Message</span>
+                        </button>
+                        <div id="contact-form-status" class="form-status" hidden aria-live="polite"></div>
+                        {% for message in contact_messages %}
+                        <div class="form-status {% if 'success' in message.tags %}success{% else %}error{% endif %}"
+                            data-auto-dismiss="5000">{{ message }}</div>
+                        {% endfor %}
+                        {% if contact_form.non_field_errors %}
+                        <div class="form-status error" data-auto-dismiss="5000">{{
+                            contact_form.non_field_errors|striptags }}</div>
+                        {% endif %}
+                    </form>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Victor Mwadzombo. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Case Studies</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/carousel.js' %}?v=20260228-hero1"></script>
+    <script src="{% static 'js/script.js' %}?v=20260228-final6"></script>
+</body>
+
+</html>
