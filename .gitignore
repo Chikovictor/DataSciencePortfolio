@@ -1,6 +1,10 @@
 # Environment variables
 .env
 
+# IDE configuration
+.idea/
+.vscode/
+
 # Virtual environment
 .venv/
 
