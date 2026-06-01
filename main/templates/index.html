@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang=runserver"en">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -43,8 +43,8 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Case Studies</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#contact">Contact</a></li>
                     <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="nav-actions">
                     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
@@ -352,27 +352,23 @@
                     <div class="field" data-field="name">
                         <label for="{{ review_form.name.id_for_label }}">Name</label>
                         {{ review_form.name }}
-                        {% if review_form.name.errors %}<small class="field-error">{{ review_form.name.errors|striptags
-                            }}</small>{% endif %}
+                        {% if review_form.name.errors %}<small class="field-error">{{ review_form.name.errors|striptags }}</small>{% endif %}
                     </div>
                     <div class="field" data-field="title">
                         <label for="{{ review_form.title.id_for_label }}">Role / Company</label>
                         {{ review_form.title }}
-                        {% if review_form.title.errors %}<small class="field-error">{{
-                            review_form.title.errors|striptags }}</small>{% endif %}
+                        {% if review_form.title.errors %}<small class="field-error">{{ review_form.title.errors|striptags }}</small>{% endif %}
                     </div>
                     <div class="field" data-field="review_text">
                         <label for="{{ review_form.review_text.id_for_label }}">Review</label>
                         {{ review_form.review_text }}
-                        {% if review_form.review_text.errors %}<small class="field-error">{{
-                            review_form.review_text.errors|striptags }}</small>{% endif %}
+                        {% if review_form.review_text.errors %}<small class="field-error">{{ review_form.review_text.errors|striptags }}</small>{% endif %}
                     </div>
                     <div class="field" data-field="image">
                         <label for="{{ review_form.image.id_for_label }}">Profile Image (optional)</label>
                         {{ review_form.image }}
                         <small class="field-help">If no image is uploaded, a default avatar will be used.</small>
-                        {% if review_form.image.errors %}<small class="field-error">{{
-                            review_form.image.errors|striptags }}</small>{% endif %}
+                        {% if review_form.image.errors %}<small class="field-error">{{ review_form.image.errors|striptags }}</small>{% endif %}
                     </div>
                     <button type="submit" name="review_submit" class="btn btn-primary" data-loading-label="Submitting">
                         <span class="btn-label">Submit Testimonial</span>
@@ -489,22 +485,19 @@
                         <div class="field" data-field="name">
                             <label for="{{ contact_form.name.id_for_label }}">Name</label>
                             {{ contact_form.name }}
-                            {% if contact_form.name.errors %}<small class="field-error">{{
-                                contact_form.name.errors|striptags }}</small>{% endif %}
+                            {% if contact_form.name.errors %}<small class="field-error">{{ contact_form.name.errors|striptags }}</small>{% endif %}
                         </div>
 
                         <div class="field" data-field="email">
                             <label for="{{ contact_form.email.id_for_label }}">Email</label>
                             {{ contact_form.email }}
-                            {% if contact_form.email.errors %}<small class="field-error">{{
-                                contact_form.email.errors|striptags }}</small>{% endif %}
+                            {% if contact_form.email.errors %}<small class="field-error">{{ contact_form.email.errors|striptags }}</small>{% endif %}
                         </div>
 
                         <div class="field" data-field="message">
                             <label for="{{ contact_form.message.id_for_label }}">Message</label>
                             {{ contact_form.message }}
-                            {% if contact_form.message.errors %}<small class="field-error">{{
-                                contact_form.message.errors|striptags }}</small>{% endif %}
+                            {% if contact_form.message.errors %}<small class="field-error">{{ contact_form.message.errors|striptags }}</small>{% endif %}
                         </div>
 
                         <button type="submit" class="btn btn-primary" name="contact_submit" value="1"
@@ -517,8 +510,7 @@
                             data-auto-dismiss="5000">{{ message }}</div>
                         {% endfor %}
                         {% if contact_form.non_field_errors %}
-                        <div class="form-status error" data-auto-dismiss="5000">{{
-                            contact_form.non_field_errors|striptags }}</div>
+                        <div class="form-status error" data-auto-dismiss="5000">{{ contact_form.non_field_errors|striptags }}</div>
                         {% endif %}
                     </form>
                 </article>

@@ -79,3 +79,17 @@ class ProfileImageAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
                 "Recommended portrait orientation (around 4:5) so the full head remains visible in carousel."
             )
         return form
+
+
+@admin.register(Certification)
+class CertificationAdmin(SuperuserOnlyAdminMixin, admin.ModelAdmin):
+    list_display = [
+        "title",
+        "issuing_organization",
+        "issue_date",
+        "display_order",
+        "created_at",
+    ]
+    list_filter = ["issuing_organization", "issue_date"]
+    search_fields = ["title", "issuing_organization"]
+    list_editable = ["display_order"]

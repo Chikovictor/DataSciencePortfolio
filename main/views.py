@@ -8,14 +8,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.cache import cache
 from django.core.mail import BadHeaderError, EmailMessage, EmailMultiAlternatives
-from django.db.models import Count
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render
 from django.templatetags.static import static
 from django.utils import timezone
 from django.views.decorators.http import require_GET, require_POST
 
-from .forms import CommentForm, ContactForm, ReviewForm
+from .forms import ContactForm, ReviewForm
 from .models import CaseStudy, Certification, Event, ProfileImage, Review
 from .security import client_identifier, is_rate_limited
 
@@ -89,10 +88,6 @@ def _case_studies_for_homepage(min_cards=4):
 
 def _profile_images_for_homepage():
     return list(ProfileImage.objects.filter(is_active=True).order_by("order", "-created_at"))
-
-
-def _reaction_emoji_values():
-    return [emoji for emoji, _ in Reaction.EMOJI_CHOICES]
 
 
 def _ensure_session_key(request):

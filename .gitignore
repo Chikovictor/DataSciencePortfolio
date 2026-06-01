@@ -17,3 +17,7 @@ staticfiles/
 
 # Local configuration
 local_settings.py
+
+# Test logs/outputs
+test_output.log
+test_out.txt
